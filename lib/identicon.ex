@@ -1,18 +1,35 @@
 defmodule Identicon do
-  @moduledoc """
-  Documentation for `Identicon`.
-  """
+  def main(input) do
+    input
+    |> hash_input
+    |> pick_color
+    |> build_grid
+    |> mirror_row
+  end
 
-  @doc """
-  Hello world.
+  def build_grid(%Identicon.Image{hex: hex} = image) do
+    hex
+    |> Enum.chunk_every(3)
+   
+  end
 
-  ## Examples
+  def mirror_row(incomplete_grid) do
+    for [a,b,c] <- incomplete_grid, do:[a,b,c,b,a]
+  end
+  end
 
-      iex> Identicon.hello()
-      :world
+  end
 
-  """
-  def hello do
-    :world
+  def pick_color(image) do
+    %Identicon.Image{hex: [r,g,b | _tail]} = image
+
+    %Identicon.Image{image | color: {r,g,b}}
+  end
+
+  def hash_input(input) do
+    hex = :crypto.hash(:md5, input)
+    |> :binary.bin_to_list
+
+    %Identicon.Image{hex: hex}
   end
 end
