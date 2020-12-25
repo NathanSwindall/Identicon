@@ -7,6 +7,7 @@ defmodule Identicon.MixProject do
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
+      elixirc_paths: ["lib", "lib/Playground2"],
       deps: deps()
     ]
   end
@@ -27,4 +28,6 @@ defmodule Identicon.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end
+
+
 end
