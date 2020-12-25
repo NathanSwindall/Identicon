@@ -1,0 +1,3 @@
+{:egd, github: "erlang/egd"}
+
+We need to add this dependency so you put this in the deps part and run "mix deps.get"
